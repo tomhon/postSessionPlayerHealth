@@ -204,7 +204,7 @@ var playerClub = 'Seattle United FC'
 var gameOrTraining = "Training";
 var eventID = new Date().toLocaleDateString();
 var eventTime = new Date().toLocaleDateString();
-var preOrPost = "Pre";
+var preOrPost = "Post";
 
 
 
