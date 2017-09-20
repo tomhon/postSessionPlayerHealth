@@ -22,7 +22,6 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 });
 
 // Setup IOT Hub connection
-// var connectionString = 'HostName=IoTSoccerCoach.azure-devices.net;DeviceId=Mobile2;SharedAccessKey=OCNg43XgIY0wf0m01c0RXkSHIXsrnAUTHmPD5RgBOe0=';
 var connectionString = 'HostName=iothubsoccercoach.azure-devices.net;DeviceId=mobile1;SharedAccessKey=nLSuFkJOj3dtkEgwJbjEpQe0i28ws7Z/lLWbb2d9dt8=' ;
 // use factory function from AMQP-specific package
 var clientFromConnectionString = require('azure-iot-device-http').clientFromConnectionString;
