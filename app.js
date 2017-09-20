@@ -22,7 +22,8 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 });
 
 // Setup IOT Hub connection
-var connectionString = 'HostName=IoTSoccerCoach.azure-devices.net;DeviceId=Mobile2;SharedAccessKey=OCNg43XgIY0wf0m01c0RXkSHIXsrnAUTHmPD5RgBOe0=';
+// var connectionString = 'HostName=IoTSoccerCoach.azure-devices.net;DeviceId=Mobile2;SharedAccessKey=OCNg43XgIY0wf0m01c0RXkSHIXsrnAUTHmPD5RgBOe0=';
+var connectionString = 'HostName=iothubsoccercoach.azure-devices.net;DeviceId=mobile1;SharedAccessKey=nLSuFkJOj3dtkEgwJbjEpQe0i28ws7Z/lLWbb2d9dt8=' ;
 // use factory function from AMQP-specific package
 var clientFromConnectionString = require('azure-iot-device-http').clientFromConnectionString;
 // AMQP-specific factory function returns Client object from core package
@@ -142,7 +143,7 @@ function pushLogData (document) {
 
 // List the questions to be asked
 var questionsList = Array ();
-questionsList[0] = 'What´s your energy level before the match? 5(Awesome) - 1(Horrible)';
+questionsList[0] = 'What´s your energy level before the match?  ';
 questionsList[1] = 'How do you sleep before the match? 5(Awesome) - 1(Horrible)';
 questionsList[2] = 'How good is the opponent? 5(Awesome) - 1(Horrible)';
 questionsList[3] = 'What´s your primary focus for this match?';
@@ -174,7 +175,7 @@ var logDataArray = Array();
 //                 maxRetries: 3, retryPrompt: 'Not a valid option'};
 
 var numberPromptOptions = { 
-                maxRetries: 3, minValue: 0, maxValue: 5, retryPrompt: 'Not a valid option'};
+                maxRetries: 3, minValue: 1, maxValue: 5, retryPrompt: 'Not a valid option'};
 
 var textPromptOptions = { 
                 maxRetries: 3, retryPrompt: 'Not a valid option'};
@@ -310,7 +311,8 @@ bot.dialog('survey', [
     },
         function (session, results, next) {
         logResponse(session, questionsList[8], results.response);
-        builder.Prompts.number( session, questionsList[9], numberPromptOptions );
+        builder.Prompts.number( session, questionsList[9], { 
+            maxRetries: 3, minValue: 0, maxValue: 99, retryPrompt: 'Not a valid option'} );
         next();
     },
     //     function (session, results, next) {
