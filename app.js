@@ -174,7 +174,7 @@ var logDataArray = Array();
 //                 maxRetries: 3, retryPrompt: 'Not a valid option'};
 
 var numberPromptOptions = { 
-                maxRetries: 3, minValue: 1, maxValue: 5, retryPrompt: 'Not a valid option'};
+                maxRetries: 3, minValue: 0, maxValue: 5, retryPrompt: 'Not a valid option'};
 
 var textPromptOptions = { 
                 maxRetries: 3, retryPrompt: 'Not a valid option'};
@@ -310,7 +310,7 @@ bot.dialog('survey', [
     },
         function (session, results, next) {
         logResponse(session, questionsList[8], results.response);
-        builder.Prompts.text( session, questionsList[9], textPromptOptions );
+        builder.Prompts.number( session, questionsList[9], numberPromptOptions );
         next();
     },
     //     function (session, results, next) {
